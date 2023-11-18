@@ -1,0 +1,50 @@
+.inputText {
+  width: 25vw;
+  height: 4vh;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+}
+
+.addTitleInput {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid#ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Тень */
+  transition: box-shadow 0.3s ease-in-out;
+  outline: none; /* Убираем рамку при фокусе */
+}
+
+.addTitleInput:focus {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  border: 1px solid#ccc;
+}
+
+.btnAdd {
+  margin-top: 2px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid #ffffff;
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgb(60, 170, 60); /* Цвет фона */
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  transform: 2s;
+}
+
+.btnAdd:hover {
+  /* background-color: #45a049; Цвет фона при наведении */
+  border: 2px solid rgb(60, 170, 60);
+  background: none;
+  color: rgb(60, 170, 60);
+  transition: 0.5s;
+  box-sizing: border-box;
+}
