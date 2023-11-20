@@ -1,12 +1,16 @@
 import "./styles/todoListComponentStyles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "./Modal";
-function TodoList({ data, handleRemoveTodo }) {
+function TodoList({ data, updateTodo, handleRemoveTodo }) {
   const [activeText, setActiveText] = useState(false);
   const [done, setDone] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const handleShowInput = (task) => {
     setActiveText((prev) => !prev);
@@ -78,14 +82,14 @@ function TodoList({ data, handleRemoveTodo }) {
                     </div>
                     <div className="deleteAndCompleted">
                       <button
-                        onClick={() => handleCompleted(item._id)}
+                        onClick={() => updateTodo(item._id)}
                         className="completed"
                       >
                         ✔
                       </button>
                       <button
                         className="buttonDelete"
-                        onClick={() => handleRemoveTodo(item._id)}
+                        onClick={() => handleRemoveTodo(item._id, filteredData)}
                       >
                         X
                       </button>

@@ -29,19 +29,16 @@ function Home() {
 
   useEffect(() => {
     dispatch(fetchTodos());
+    dispatch(updateTodo());
   }, [dispatch]);
 
   const handleRemoveTodo = (id) => {
     dispatch(removeTodo(id));
   };
-  // const handleCompleteTodo = (id, complete) => {
-  //   dispatch(updateTodo(id, complete));
-  // };
 
   const handleChangeButton = (e) => {
     e.preventDefault();
     dispatch(addTodos({ text, title }));
-
     setTitle("");
     setText("");
   };
@@ -64,9 +61,9 @@ function Home() {
           handleSetTitle={handleSetTitle}
           text={text}
           title={title}
-          updateTodo={updateTodo}
         />
         <TodoList
+          updateTodo={updateTodo}
           className="todoList"
           data={todos}
           handleRemoveTodo={handleRemoveTodo}

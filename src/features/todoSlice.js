@@ -128,16 +128,10 @@ export const todosSlice = createSlice({
         state.todos.push(action.payload);
       })
       .addCase(updateTodo.fulfilled, (state, action) => {
-        // Здесь вы можете обновить ваш стейт с учетом успешного выполнения updateTodo
-        // Например, обновить поле completed в вашем массиве todos
-        const index = state.todos.findIndex(
+        const updatedTodoIndex = state.todos.findIndex(
           (todo) => todo.id === action.payload.id
         );
-
-        // Если задача найдена, обновляем поле completed
-        if (index !== -1) {
-          state.todos[index].completed = false;
-        }
+        state.todos[updatedTodoIndex].completed = action.payload.completed;
       });
   },
 

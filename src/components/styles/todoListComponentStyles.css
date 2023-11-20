@@ -70,6 +70,9 @@
   font-size: 25px;
   cursor: pointer;
 }
+.buttonDelete:hover {
+  color: rgb(165, 8, 8);
+}
 
 /* .active_window:active,
 .active_window:focus {
@@ -81,4 +84,8 @@
   border: none;
   font-size: 25px;
   cursor: pointer;
+}
+
+.completed:hover {
+  color: rgb(60, 170, 60);
 }
