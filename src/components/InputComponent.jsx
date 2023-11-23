@@ -9,7 +9,7 @@ function InputComponent({
   return (
     <>
       <div>
-        <form  onSubmit={handleChangeButton} className="forms" type="submit">
+        <form onSubmit={handleChangeButton} className="forms" type="submit">
           <input
             className="addTitleInput"
             value={title}
@@ -24,7 +24,10 @@ function InputComponent({
             type="text"
             onChange={handleSetText}
           />
-          <button  className="btnAdd" disabled={!text || text[0] === " ", !title || title[0] === " "}>
+          <button
+            className="btnAdd"
+            disabled={!text || text[0] === " " || !title || title[0] === " "}
+          >
             Добавить
           </button>
         </form>

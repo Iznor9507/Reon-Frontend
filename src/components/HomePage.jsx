@@ -13,24 +13,35 @@ import TodoList from "./TodoList";
 function Home() {
   const error = useSelector((state) => state.error);
   const todos = useSelector((state) => state.todos);
-  const loading = useSelector((state) => state.loading);
 
   const [text, setText] = useState("");
   const [title, setTitle] = useState("");
+  const [forceUpdate, setForceUpdate] = useState(0);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchTodos());
+    dispatch(updateTodo());
+  }, [dispatch, forceUpdate]);
 
   const handleSetText = (e) => {
     setText(e.target.value);
+  };
+  const handleUpdateTodo = (id, completed) => {
+    dispatch(updateTodo({ id, completed }))
+      .then(() => {
+        setForceUpdate((prev) => prev + 1); // Увеличиваем значение для принудительного обновления
+      })
+      .catch((error) => {
+        // Обработка ошибок, если необходимо
+        console.error("Failed to update todo:", error);
+      });
   };
 
   const handleSetTitle = (e) => {
     setTitle(e.target.value);
   };
-
-  useEffect(() => {
-    dispatch(fetchTodos());
-    dispatch(updateTodo());
-  }, [dispatch]);
 
   const handleRemoveTodo = (id) => {
     dispatch(removeTodo(id));
@@ -42,10 +53,6 @@ function Home() {
     setTitle("");
     setText("");
   };
-
-  if (loading) {
-    return <h1>ЗАГРУЗКА</h1>;
-  }
 
   if (error) {
     <div>{error}</div>;
@@ -63,7 +70,8 @@ function Home() {
           title={title}
         />
         <TodoList
-          updateTodo={updateTodo}
+          forceUpdate={forceUpdate}
+          handleUpdateTodo={handleUpdateTodo}
           className="todoList"
           data={todos}
           handleRemoveTodo={handleRemoveTodo}

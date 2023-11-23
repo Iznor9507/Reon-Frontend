@@ -1,17 +1,29 @@
 .todoStyle {
   margin-right: 35px;
+  position: relative;
 }
 
 .titleAndText {
-  width: 80%;
+  
+  width: 250px;
   display: flex;
-  align-items: center;
-  height: 100%;
-  box-sizing: border-box;
+  overflow: hidden;
+  height: 50px;
+  /* border: 1px solid black; */
+}
+
+.list{
+margin-top: 50px;
 }
 
 .title {
   color: rgb(3, 91, 62);
+
+  box-sizing: content-box;
+}
+
+.liveSearch {
+  position: fixed;
 }
 
 .title.active {
@@ -74,10 +86,13 @@
   color: rgb(165, 8, 8);
 }
 
-/* .active_window:active,
-.active_window:focus {
-  outline: none !important;
-} */
+.active_window {
+  height: 60px;
+  width: 60px;
+  background: none;
+  border: none;
+  border-right: 1px solid black;
+}
 .completed {
   box-sizing: border-box;
   background: none;

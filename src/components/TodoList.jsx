@@ -1,9 +1,9 @@
 import "./styles/todoListComponentStyles.css";
 import { useEffect, useState } from "react";
 import Modal from "./Modal";
-function TodoList({ data, updateTodo, handleRemoveTodo }) {
+function TodoList({ data, handleUpdateTodo, handleRemoveTodo }) {
   const [activeText, setActiveText] = useState(false);
-  const [done, setDone] = useState(false);
+
   const [selectedTask, setSelectedTask] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState(data);
@@ -15,10 +15,6 @@ function TodoList({ data, updateTodo, handleRemoveTodo }) {
   const handleShowInput = (task) => {
     setActiveText((prev) => !prev);
     setSelectedTask(task);
-  };
-
-  const handleCompleted = () => {
-    setDone((done) => !done);
   };
 
   const handleSearch = (e) => {
@@ -39,66 +35,75 @@ function TodoList({ data, updateTodo, handleRemoveTodo }) {
   return (
     <>
       <div className="todoStyle">
-        <ul style={{ marginTop: "40px" }}>
+        <ul style={{ marginTop: "50px" }}>
           <p style={{ fontSize: "20px" }}>Ваш список дел</p>
           <input
+            className="liveSearch"
             type="text"
             placeholder="Поиск по заголовку"
             value={searchTerm}
             onChange={handleSearch}
           />
-          {filteredData
-            .map((item) => {
-              return (
-                <li
-                  style={{
-                    listStyleType: "none",
-                    width: "25vw",
-                    height: "60px",
-                    marginBottom: "20px",
-                    border: "1px solid black",
-                  }}
-                  key={item._id}
-                >
-                  <div style={{ display: "flex" }}>
-                    <button
-                      className="active_window"
-                      style={{ width: "80px" }}
-                      onClick={() => handleShowInput(item)}
-                    >
-                      Показать полность
-                    </button>
-                    <div className="titleAndText">
-                      <h2 className={done ? "title active" : "title"}>
-                        {item.title}
-                      </h2>
-                      {activeText && (
-                        <Modal
-                          setActiveText={setActiveText}
-                          activeText={activeText}
-                          selectedTask={selectedTask}
-                        />
-                      )}
-                    </div>
-                    <div className="deleteAndCompleted">
+          <div className="list">
+            {filteredData
+              .map((item) => {
+                return (
+                  <li
+                    style={{
+                      listStyleType: "none",
+                      width: "380px",
+                      height: "60px",
+                      marginBottom: "10px",
+                      border: "1px solid black",
+                    }}
+                    key={item._id}
+                  >
+                    <div style={{ display: "flex" }}>
                       <button
-                        onClick={() => updateTodo(item._id)}
-                        className="completed"
+                        className="active_window"
+                        style={{ width: "80px" }}
+                        onClick={() => handleShowInput(item)}
                       >
-                        ✔
+                        Показать полность
                       </button>
-                      <button
-                        className="buttonDelete"
-                        onClick={() => handleRemoveTodo(item._id, filteredData)}
-                      >
-                        X
-                      </button>
+                      <div className="titleAndText">
+                        <h2
+                          className={item.completed ? "title active" : "title"}
+                        >
+                          {item.title}
+                        </h2>
+                        {activeText && (
+                          <Modal
+                            setActiveText={setActiveText}
+                            activeText={activeText}
+                            selectedTask={selectedTask}
+                          />
+                        )}
+                      </div>
+                      <div className="deleteAndCompleted">
+                        <button
+                          onClick={() =>
+                            handleUpdateTodo(item._id, item.completed)
+                          }
+                          className="completed"
+                        >
+                          ✔
+                        </button>
+                        <button
+                          className="buttonDelete"
+                          onClick={() =>
+                            handleRemoveTodo(item._id, filteredData)
+                          }
+                        >
+                          X
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </li>
-              );
-            }) // reverse() переворачивает массив
-            .reverse()}
+                  </li>
+                );
+              }) // reverse() переворачивает массив
+              .reverse()}
+          </div>
         </ul>
       </div>
     </>
