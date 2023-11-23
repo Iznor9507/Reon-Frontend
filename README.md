@@ -1,8 +1,42 @@
-# React + Vite
+# Тестовое задание REON
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Реализованая следующая функциональность:
 
-Currently, two official plugins are available:
+### Level 1. Frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Вывод списка задач
+- Добавление задачи
+- Удаление задачи
+- Возможность отмечать выполненные
+- Стилизация только с использованием CSS
+  <br>
+
+### Level 2. Новые фичи
+
+- Поиск по задача
+- Возможность создавать различные списки задач со своими заголовкам
+- Адаптивная верстк
+- Использование библиотеки управления состояние
+- Детальный просмотр задачи при клике и добавление полного описание к ней, в списке отображаются только заголовк -
+  <br>
+  ### Level 3. Backend
+- Добавляем к нашему приложению бэкенда на NodeJS + Express(по желанию). Теперь данные по приложения должны храниться в оперативной памяти сервера. Сервер должен предоставлять HTTP REST API, которое будет использовать фронт.
+  <br>
+
+### Level 4. Database
+
+- Для хранения данных приложения будем использовать реляционную базу данных(можно брать любую). Доработать сервер для взаимодействия с ней, отказаться от хранения в оперативной памяти.
+
+## Запуск проекта:
+
+Сначала необходимо установить все зависимости - ввести команду в терминале:
+
+```javascript
+npm i
+```
+
+После набрать команду:
+
+```javascript
+npm run dev
+```
