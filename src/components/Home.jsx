@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useTodos from "../myHooks/useTodos";
 import InputComponent from "./InputComponent";
 import "./style.css";
@@ -6,9 +6,10 @@ import "./style.css";
 import TodoList from "./TodoList";
 import { useDispatch } from "react-redux";
 import { fetchTodos, updateTodo } from "../features/todoSlice";
+import ButtonsPoginationComponent from "./PagenateButtonComponent";
 function Home() {
   const dispatch = useDispatch();
-
+  const [page, setPage] = useState(1);
   const {
     error,
     todos,
@@ -23,9 +24,9 @@ function Home() {
   } = useTodos();
 
   useEffect(() => {
-    dispatch(fetchTodos());
+    dispatch(fetchTodos(page));
     dispatch(updateTodo());
-  }, [dispatch, forceUpdate]);
+  }, [dispatch, forceUpdate, page]);
 
   if (error) {
     <div>{error}</div>;
@@ -49,6 +50,7 @@ function Home() {
           data={todos}
           handleRemoveTodo={handleRemoveTodo}
         />
+        <ButtonsPoginationComponent setPage={setPage} page={page} />
       </div>
     </>
   );

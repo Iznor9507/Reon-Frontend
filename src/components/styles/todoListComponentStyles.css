@@ -4,7 +4,6 @@
 }
 
 .titleAndText {
-  
   width: 250px;
   display: flex;
   overflow: hidden;
@@ -12,8 +11,8 @@
   /* border: 1px solid black; */
 }
 
-.list{
-margin-top: 50px;
+.list {
+  margin-top: 50px;
 }
 
 .title {
@@ -23,7 +22,7 @@ margin-top: 50px;
 }
 
 .liveSearch {
-  position: fixed;
+  position: static;
 }
 
 .title.active {

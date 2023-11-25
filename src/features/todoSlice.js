@@ -31,11 +31,14 @@ export const addTodos = createAsyncThunk(
 
 export const fetchTodos = createAsyncThunk(
   "todos/fetch",
-  async (_, thunkAPI) => {
+  async ({ page }, thunkAPI) => {
     try {
-      const res = await fetch(`http://localhost:3001/todos`, {
-        method: "GET",
-      });
+      const res = await fetch(
+        `http://localhost:3001/todos?page=${page}&limit=${page && 2}`,
+        {
+          method: "GET",
+        }
+      );
       const data = await res.json();
 
       if (data.error) {
